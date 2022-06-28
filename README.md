@@ -9,25 +9,25 @@ DrawBox(x,y,size,Color=RgbColor(255,0,0), Angle=75, Opacity=50);
 CKwargs is a light, efficient class to enable using canonical keywords (aka named-parameters) in C++, such as with the above example. 
 
 ## Table of Contents
-- [Keywords are Necessary in Today's Projects]()
-- [DrawBox(int ix,int y,int size) example]()
-  - [Keywords to the Rescue]()
-- [A Note About Scoped Variables]()
-- [Mutiple Types with the Same Keyword]()
-- [Using CKwargs from the Called Function]()
-  - [Packed-Parameter Usage (default usage)]()
-   -[Object-Based version Usage]()
-- [C++17 (std::optional)]()
-- [Direct Access vs. Get() functions]()
+- [Keywords are Necessary in Today's Projects](#keywords-are-necessary-in-todays-projects)
+- [DrawBox(int ix,int y,int size) example](#drawboxint-ixint-yint-size-example)
+  - [Keywords to the Rescue](#keywords-to-the-rescue)
+- [A Note About Scoped Variables](#a-note-about-scoped-keywords)
+- [Mutiple Types with the Same Keyword](#mutiple-types-with-the-same-keyword)
+- [Using CKwargs from the Called Function](#using-ckwargs-from-the-called-function)
+  - [Packed-Parameter Usage (default usage)](#packed-parameter-usage-default-usage)
+   -[Object-Based version Usage](#object-based-version-usage)
+- [C++17 (std::optional)](#c17-stdoptional)
+- [Direct Access vs. Get() functions](#direct-access-vs-get-functions)
  
 ## Other Items
-- [Function-Based Keywords (aka C++ named-parameter functions)]()
+- [Function-Based Keywords (aka C++ named-parameter functions)](#installation-and-implementation)
 - [Packed-Parameters vs. Stream-Object Keyword formats]()
   - [Packed-Parameters]()
   - [Stream-Object Format]()
 - [Intallation and Implementation]()
-- [License]()
-- [Support]()
+- [License](#license)
+- [Support](#support)
 
 
 ## Keywords are Necessary in Today's Projects
