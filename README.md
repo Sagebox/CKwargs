@@ -69,7 +69,9 @@ While the Box has its defaults, we may want to change a number of those, and add
   
   while keeping the prototype as simple as 
   
+  ```C++
   DrawBox(int x,int y, int size)
+  ```
   
   only adding
   
