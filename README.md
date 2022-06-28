@@ -79,7 +79,7 @@ While the Box has its defaults, we may want to change a number of those, and add
   DrawBox(int x,int y,int size,const Args&... kwArgs)
   ```
   
-  of
+  or
   ```C++
   DrawBox(int x,int y,int size,const ckw & keywords)
   ```
