@@ -54,7 +54,7 @@ See the section below, entitled [Function-Based Keywords (aka C++ named-paramete
 
 ## Keywords are Necessary in Today's Projects
 
-Keywords in programming and using functions in C++ are becoming much more important and necessary.  Sadly, C++ has still to adopt a named-parameter/keyword format, 
+Keywords in general programming and function usage in C++ are becoming much more important and necessary.  Sadly, C++ has still to adopt a named-parameter/keyword format, 
 and there doesn't appear to be one on the horizon.
 
 ## DrawBox(int ix,int y,int size) example
