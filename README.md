@@ -10,6 +10,7 @@ CKwargs is a light, efficient class to enable using canonical keywords (aka name
 ```C++
 DrawBox(x,y,size,Color="Red", Angle=75, Opacity=50, Skew={10,-10});
 ```
+CKwargs works with canonical keywords, such as `Angle=75` as shown above, but also supports function-based keywords:
 
 ### Function-Based Keywords
 
