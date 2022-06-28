@@ -478,7 +478,7 @@ using  _kw_type4 = bool                 ;   // i.e. bool AddBorder
         // At this point, the packed-parameters are out of the equation and we can just deal with the keywords.
         //
         // The return value is KeyValuesPtr.  
-        // A return cwk object would have made things with the packed-parameters vs. streamed parameters,
+        // A return cwk object would have made things more consistent with the packed-parameters vs. streamed parameters,
         // but would have caused a copy of the cwk object, so it returns KeyValuesPtr, since that's the
         // first thing the caller is going to do anyway.
         //
