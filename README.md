@@ -5,11 +5,13 @@ C++ True Named-Parameter Keywords and Named-Parameter Functions
 
 CKwargs is a light, efficient class to enable using canonical keywords (aka named-parameters) in C++, such as with this example:
 
+## Canonical Keywords (keyword=value)
+
 ```C++
 DrawBox(x,y,size,Color="Red", Angle=75, Opacity=50, Skew={10,-10});
 ```
 
-## Function-Based Keywords
+### Function-Based Keywords
 
 Function-based keywords are another way of expressing keywords, which can be more flexible and more powerful.  They can use more than one parameter, are easier to see with the intellisense, as well some other additives.
 
