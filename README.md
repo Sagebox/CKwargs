@@ -65,7 +65,7 @@ these tasks before it creates the box, completely obviating the need to return a
 
 While the Box has its defaults, we may want to change a number of those, and add other things such as:
 
-  Color, Border, BorderSize, DrawStyle, Skew, Angle, BorderColor, Opacity, and so-on, 
+  - Color, Border, BorderSize, DrawStyle, Skew, Angle, BorderColor, Opacity, and so-on, 
   
   while keeping the prototype as simple as 
   
