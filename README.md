@@ -48,7 +48,7 @@ See the section below, entitled [Function-Based Keywords (aka C++ named-paramete
   - [Stream-Object Format](#stream-object-format)
 - [Requirements and Compiler Support](#requirements-and-compiler-support)
   - [A Note About Cpmpiler Warnings](#a-note-about-compiler-warnings)
-- [C++ Version Support - C++11, C++14, and C++17](#c-version-support---c11-c14-and-c17)
+- [C++ 11 and C++ 14 Support](#c-11-and-c-14-support)
 - [Intallation and Implementation](#installation-and-implementation)
 - [MIT License](#mit-license)
 - [Support](#support)
@@ -221,9 +221,11 @@ processing faster, to allow keyword usage in real-time functions.
 These warnings are shut off, and the equivalent #pragmas may need to be added for other compilers. 
 
 
-## C++ Version Support - C++11, C++14, and C++17
+## C++ 11 and C++ 14 Support
 
-Some CKwarg functions make use of std::optional.
+CKwargs supports any C++ version from C++ 11 and forward.
+
+However, some CKwarg functions make use of std::optional.
 
 If your compiler does not support C++17, you can turn off `keyword_cpp17_support` in `keyclass.h` for C++11 and C++14 compatibility.
 
