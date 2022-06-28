@@ -28,8 +28,7 @@ Object-Streamed Parameters
 
 A second form uses a single object that contains a linked-list back to all keywords, and is formed as a stream.
 
-This format allows the keyword to act as regular functions and can take multiple parameters vs. the one parameter
-with assigned keywords.
+This type of keyword has some advantages including better intellisense lookup, no template code and more -- see comments at bottom of text.
 
 These are used exactly the same way as the packed parameters, with a () surrounding the keyword portion: 
 
