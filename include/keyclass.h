@@ -490,7 +490,7 @@ using  _kw_type4 = bool                 ;   // i.e. bool AddBorder
             return kwx.FillKeyValues();         // Get all keyword information and return it.
         }
 
-        // FillKeyValues() for empty keyword sections (i.e. not keywords specified)
+        // FillKeyValues() for empty keyword sections (i.e. no keywords specified)
         //
         static KeyValuesPtr FillKeyValues() { ckw kwx; return kwx.FillKeyValues(); }
 
