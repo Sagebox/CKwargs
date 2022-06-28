@@ -3,9 +3,7 @@ C++ True Named-Parameter Keywords and Named-Parameter Functions
 
 ### (In-Progress Version)
 
-CKwargs is a light, efficient class to enable using canonical keywords (aka named-parameters) in C++, such as with the above example. 
-
-Example:
+CKwargs is a light, efficient class to enable using canonical keywords (aka named-parameters) in C++, such as with this example:
 
 ```C++
 DrawBox(x,y,size,Color="Red", Angle=75, Opacity=50, Skew={10,-10});
