@@ -12,7 +12,7 @@ CKwargs is a light, efficient class to enable using canonical keywords (aka name
 - [Keywords are Necessary in Today's Projects](#keywords-are-necessary-in-todays-projects)
 - [DrawBox(int ix,int y,int size) example](#drawboxint-ixint-yint-size-example)
   - [Keywords to the Rescue](#keywords-to-the-rescue)
-- [A Note About Scoped Variables](#a-note-about-scoped-keywords)
+- [A Note About Scoped Keywords vs. Unscoped Keywords](#a-note-about-scoped-keywords-vs-unscoped-keywords)
 - [Mutiple Types with the Same Keyword](#mutiple-types-with-the-same-keyword)
 - [Using CKwargs from the Called Function](#using-ckwargs-from-the-called-function)
   - [Packed-Parameter Usage (default usage)](#packed-parameter-usage-default-usage)
@@ -75,20 +75,20 @@ DrawBox(x,y,size,Color="red", Angle=75, Opacity=50)
 
 choosing any keywords and placing them in any order, all without any of the keyword in the function prototype.
 
-## A Note about Scoped Keywords
+## A Note About Scoped Keywords vs. Unscoped Keywords
 
-Note that the keywords are unscoped.  The default behavior for CKwarhgs is scope, such as:
+Note that the keywords in these examples are unscoped.  The default behavior for C++ is to scope keywords, such as:
 
 ```C++
 DrawBox(x,y,size,kw::Color="red", kw::Angle=75, kw::Opacity=50)
 ```
 
-Where kw is an arbitrarily-defined (i.e. you set it, not CKwargs) namespace, class, or struct to encapsulate they keywords in a localize scope.
+Where `kw` is an arbitrarily-defined (i.e. you set it, not CKwargs) namespace, class, or struct to encapsulate the keywords in a localized scope.
 
-It is easy to remove the scope by simply stating 'using namespace kw', , either locally in the function or at the top of the
+It is easy to remove the scope by simply stating `using namespace kw`, either locally in the function or at the top of the
 source file.
 
-This document uses mostly unscoped examples for clarity of demonstration.
+This document and much of the source-code documentation uses mostly unscoped examples for clarity of demonstration.
 
 ## Mutiple Types with the Same Keyword
 
