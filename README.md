@@ -215,4 +215,4 @@ CKWargs is distributed under the MIT License, with the title and copyright notic
 
 # Support
 
-<< Section to be filled in >>
+-- To be completed --
