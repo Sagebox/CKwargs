@@ -14,6 +14,14 @@ CKwargs is a light, efficient class to enable using canonical keywords (aka name
   - [Keywords to the Rescue]()
 - [A Note About Scoped Variables]()
 - [Mutiple Types with the Same Keyword]()
+- [Using CKwargs from the Called Function]()
+
+## Other Items
+- [Function-Based Keywords (aka C++ named-parameter functions)()
+- [Intallation]()
+- [License]()
+- [Support]()
+
 
 ## Keywords are Necessary in Today's Projects
 
@@ -84,6 +92,48 @@ DrawBox(x,y,size,Color=MyColor, Angle=75, Opacity=50);
 ```
 
 are all acceptable, even though different types are used.
+
+## Using CKwargs from the Called Function
+
+From the function side of things, it is easy to use CKwargs.  There are two ways to use CKwargs, as a packed-paremeter or object.
+
+### Packed-Parameter (default usage)
+
+The packed-paremeter usage allows a true, canonical keyword style, and looks like this from the function's side, using DrawBox() as an example:
+
+```C++
+template<class... Args>
+void DrawBox(int x,int y,int size,const Args&... args)
+{
+     auto keys = pkw::FillKeywords(); // Get a list of keyword pointers
+     
+     auto bBorder = ckw::Get(keys.Border,false); // Return keyword if used or false as default
+     auto cColor = ckw::Get(keys.color)          // With no default, returns std::optional with value or nullopt.
+     
+}
+```
+
+If your compiler does not support C++17.  ckw::Get() is a shortcut function and not required -- you can turn off the optional support and refer to the 
+value directly, such as:
+
+```C++
+auto bBorder = keys.Border() ? *keys.Border : false;
+```
+
+which is the equivalent of the original line:
+
+```C++
+auto bBorder = ckw::Get(keys.Border,false);  // Return keyword if used or false as default
+```
+
+**_With this format, the interface is usually split into two components, where the keys are passed to the main function,
+and the packed-parameter list is parsed in the interface, since this part of the code must be in the .h-file interface vs.
+the source code (unless the call and function are in the same source body.)_**
+
+
+### Object-Based version
+
+With an object-based version, things are simpler as the interface does not require a template:
 
 
 
