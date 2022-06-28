@@ -61,7 +61,7 @@ and there doesn't appear to be one on the horizon.
 
 Lets say we want to draw a square.  We want to have a lot of power behind it, but don't want to put a large number of options in the protoype, or, worse,
 have to create a "DrawBox" object and make a number of calls end then "show" the Box.  We want to affect the box options and attributes on the call, so it can perform
-these tasks before it created the box, completely obviating the need to return an object of anything at all
+these tasks before it creates the box, completely obviating the need to return an object of anything at all
 
 While the Box has its defaults, we may want to change a number of those, and add other things such as:
 
