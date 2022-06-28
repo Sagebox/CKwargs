@@ -1,5 +1,5 @@
 # CKwargs
-C++ True Named-Parameter Keywords and Name-Parameter Functions
+C++ True Named-Parameter Keywords and Named-Parameter Functions
 
 ### (In-Progress Version)
 
