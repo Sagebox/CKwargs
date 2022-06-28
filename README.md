@@ -3,10 +3,32 @@ C++ True Named-Parameter Keywords and Named-Parameter Functions
 
 ### (In-Progress Version)
 
-```C++
-DrawBox(x,y,size,Color=RgbColor(255,0,0), Angle=75, Opacity=50);
-```
 CKwargs is a light, efficient class to enable using canonical keywords (aka named-parameters) in C++, such as with the above example. 
+
+Example:
+
+```C++
+DrawBox(x,y,size,Color="Red", Angle=75, Opacity=50, Skew={10,-10});
+```
+
+## Function-Based Keywords
+
+Function-based keywords are another way of expressing keywords, which can be more flexible and more powerful.  They can use more than one parameter, are easier to see with the intellisense, as well some other additives.
+
+
+
+### Example using Function-Based Keywords (aka named-parameter functions)
+
+
+```C++
+DrawBox(x,y,size,Color("Red") ,Angle(75), Opacity(50), Skew(10,-10));
+```
+
+
+Even though the canonoical keyword form (i.e. `Range=123` vs. `Range(123)`) can be more compelling, this is the form used in [Sagebox C++ GUI tools](https://github.com/Sagebox/Sagebox). 
+
+See the section below, entitled [Function-Based Keywords (aka C++ named-parameter functions)](#function-based-keywords-aka-c-named-parameter-functions) for more information and examples.
+
 
 ## Table of Contents
 - [Keywords are Necessary in Today's Projects](#keywords-are-necessary-in-todays-projects)
