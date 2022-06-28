@@ -115,8 +115,8 @@ void DrawBox(int x,int y,int size,const Args&... args)
      auto keys = pkw::FillKeywords(); // Get a list of keyword pointers
      
      auto bBorder = ckw::Get(keys.Border,false); // Return keyword if used or false as default
-     auto cColor = ckw::Get(keys.color)          // With no default, returns std::optional with value or nullopt.
-     
+     auto cColor = ckw::Get(keys.color)          // With no default, returns std::optional 
+                                                 // with value or nullopt.
 }
 ```
 
@@ -140,7 +140,8 @@ void DrawBox(int x,int y,int size,const & ckw kwx)
     // After the above statement, the code is exactly the same as the packed-parameter version
      
      auto bBorder = ckw::Get(keys.Border,false); // Return keyword if used or false as default
-     auto cColor = ckw::Get(keys.color)          // With no default, returns std::optional with value or nullopt
+     auto cColor = ckw::Get(keys.color)          // With no default, returns std::optional 
+                                                 // with value or nullopt
 }
 ```
 
@@ -165,6 +166,21 @@ auto bBorder = ckw::Get(keys.Border,false);  // Return keyword if used or false 
 
 Get() also has a form that will return a std::optional() when no defsault is given and C++17 support is turned on.
 
+# Function-Based Keywords (aka C++ named-parameter functions)
+
+-- To be completed --
+
+# Packed-Parameters vs. Stream-Object Keyword formats
+
+-- To be completed --
+
+## Packed-Parameters
+
+-- To be completed --
+
+## Stream-Object Format
+
+-- To be completed --
 
 # Installation and Implementation
 
