@@ -17,7 +17,6 @@ CKwargs is a light, efficient class to enable using canonical keywords (aka name
 - [Using CKwargs from the Called Function](#using-ckwargs-from-the-called-function)
   - [Packed-Parameter Usage (default usage)](#packed-parameter-usage-default-usage)
    -[Object-Based version Usage](#object-based-version-usage)
-- [C++17 (std::optional)](#c17-stdoptional)
 - [Direct Access vs. Get() functions](#direct-access-vs-get-functions)
  
 ## Other Items
@@ -25,6 +24,9 @@ CKwargs is a light, efficient class to enable using canonical keywords (aka name
 - [Packed-Parameters vs. Stream-Object Keyword formats](#packed-parameters-vs-stream-object-keyword-formats)
   - [Packed-Parameters](#packed-parameters)
   - [Stream-Object Format](#stream-object-format)
+- [Requirements and Compiler Support](#requirements-and-compiler-support)
+  - [A Note About Cpmpiler Warnings](#a-note-about-compiler-warnings)
+- [C++ Version Support - C++11, C++14, and C++17](#c-version-support---c11-c14-and-c17)
 - [Intallation and Implementation](#installation-and-implementation)
 - [License](#license)
 - [Support](#support)
@@ -145,10 +147,6 @@ void DrawBox(int x,int y,int size,const & ckw kwx)
 }
 ```
 
-## C++17 (std::optional)
-
-If your compiler does not support C++17 for C++11 and C++14 compatibility.
-
 ## Direct Access vs. Get() functions
 
 ckw::Get() is an inline shortcut function and not required -- you can turn off the optional support and refer to the 
@@ -181,6 +179,32 @@ Get() also has a form that will return a std::optional() when no defsault is giv
 ## Stream-Object Format
 
 -- To be completed --
+
+## Requirements and Compiler Support
+
+The only requirement is C++11 and above.
+
+On the initial release, MSVC was used as the compiler and it has not been tested on GCC.
+
+All code is standard C++11 or C++17 code (which can be turned off with a switch) and should compilder under GCC.
+As people use the project, I am happy make sure it works fine on GCC and other comppilers, of if anyone wants to send me
+an altered version with that support, I can update the repository.
+
+### A Note About Compiler Warnings
+
+In the code, there are MSC_VER ifdefs to remove SDL and struct C++ form options.  This is because MSVC (with /SDL on, which is usually a good
+idea, at least in development) complains about uninitialized variables and other things.  This is purposely design into CKwargs to keep memory usage low and
+processing faster, to allow keyword usage in real-time functions. 
+
+These warnings are shut off, and the equivalent #pragmas may need to be added for other compilers. 
+
+
+## C++ Version Support - C++11, C++14, and C++17
+
+Some CKwarg functions make use of std::optional.
+
+If your compiler does not support C++17, you can turn off `keyword_cpp17_support` in `keyclass.h` for C++11 and C++14 compatibility.
+
 
 # Installation and Implementation
 
