@@ -22,7 +22,10 @@ CKwargs is a light, efficient class to enable using canonical keywords (aka name
  
 ## Other Items
 - [Function-Based Keywords (aka C++ named-parameter functions)]()
-- [Intallation]()
+- [Packed-Parameters vs. Stream-Object Keyword formats]()
+  - [Packed-Parameters]()
+  - [Stream-Object Format]()
+- [Intallation and Implementation]()
 - [License]()
 - [Support]()
 
@@ -151,7 +154,7 @@ ckw::Get() is an inline shortcut function and not required -- you can turn off t
 value directly, such as:
 
 ```C++
-auto bBorder = keys.Border() ? *keys.Border : false;
+auto bBorder = keys.Border ? *keys.Border : false;
 ```
 
 which is the equivalent of the original line:
@@ -163,5 +166,37 @@ auto bBorder = ckw::Get(keys.Border,false);  // Return keyword if used or false 
 Get() also has a form that will return a std::optional() when no defsault is given and C++17 support is turned on.
 
 
+# Installation and Implementation
 
+Installation is just the two files: `keyclass.cpp` and `keyclass.h`
 
+The file `my_keywords.h` is an example file and is created by the program using CKwargs.
+
+## Implementation
+
+- Copy `keyclass.cpp` and `keyclass.h` into your project directory
+- Edit `keyclass.h` to remove or change the example keywords (Range, AddBorder, etc.), placing your own keywords in the file
+  - Also set the types for each keyword
+- use `my_keywords.h` to create your own keyword code to parse the keywords, using either the canonical keyword method (in the kw namespace) or the function-based keyword format (in the kf namespace)
+  - only one namespace is typically used, depending on the style you choose, although both styles can be used simultaneously
+  - namespaces can also be classes or structs.  As a namespace, you can unscope the keywords for cleaner usage (i.e. AddBorder=true vs. kw::AddBorder=true)
+    - This is the only advantage to using a namespace vs. a class or struct.
+    - Note that the examples have static in front of the functions.  This will cause duplicated code when multiple source files bring in the `my_keywords.h` file.
+      - Move the code to a separate C++ file to avoid duplicate code
+      - The code itself is small, so it is not required when mulitple files use `my_keywords.h`, and it can be easier to let the duplicated code exist during the design phase and/or until a refactoring step to avoid extra work until the design is solidified.
+  - the namespace are arbitrary names and can be named anything you liked, and can also be put into any scope you wish, such as within a class (as classes or structs vs. namespaces)
+
+As many keywords sets as desired may be used with different namespace/classes as shown in my_keywords.h, allowing different modules to use different and unique keywords without overlap.
+
+# License
+
+CKwargs is part of the Sagebox suite of open-source code.
+
+CKWargs is distributed under the MIT License, with the title and copyright notice as:
+
+`CKwargs -- Sagebox C++ Named Parameter Keywords and Functions`<br />
+`Copyright (c) 2022 Rob Nelson.  All Rights Reserved.`
+
+# Support
+
+<< Section to be filled in >>
