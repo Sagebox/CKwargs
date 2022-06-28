@@ -15,9 +15,13 @@ CKwargs is a light, efficient class to enable using canonical keywords (aka name
 - [A Note About Scoped Variables]()
 - [Mutiple Types with the Same Keyword]()
 - [Using CKwargs from the Called Function]()
-
+  - [Packed-Parameter Usage (default usage)]()
+   -[Object-Based version Usage]()
+- [C++17 (std::optional)]()
+- [Direct Access vs. Get() functions]()
+ 
 ## Other Items
-- [Function-Based Keywords (aka C++ named-parameter functions)()
+- [Function-Based Keywords (aka C++ named-parameter functions)]()
 - [Intallation]()
 - [License]()
 - [Support]()
@@ -97,7 +101,7 @@ are all acceptable, even though different types are used.
 
 From the function side of things, it is easy to use CKwargs.  There are two ways to use CKwargs, as a packed-paremeter or object.
 
-### Packed-Parameter (default usage)
+### Packed-Parameter Usage (default usage)
 
 The packed-paremeter usage allows a true, canonical keyword style, and looks like this from the function's side, using DrawBox() as an example:
 
@@ -113,7 +117,37 @@ void DrawBox(int x,int y,int size,const Args&... args)
 }
 ```
 
-If your compiler does not support C++17.  ckw::Get() is a shortcut function and not required -- you can turn off the optional support and refer to the 
+**_With this format, the interface is usually split into two components, where the keys are passed to the main function,
+and the packed-parameter list is parsed in the interface, since this part of the code must be in the .h-file interface vs.
+the source code (unless the call and function are in the same source body.)_**
+
+
+## Object-Based version Usage
+
+With an object-based version, things are simpler as the interface does not require a template:
+
+
+
+```C++
+void DrawBox(int x,int y,int size,const & ckw kwx)
+{
+     auto keys = kwx.FillKeywords(); // Get a list of keyword pointers
+
+    // This is the only coding difference between the packed-parameter and passed object styles.
+    // After the above statement, the code is exactly the same as the packed-parameter version
+     
+     auto bBorder = ckw::Get(keys.Border,false); // Return keyword if used or false as default
+     auto cColor = ckw::Get(keys.color)          // With no default, returns std::optional with value or nullopt
+}
+```
+
+## C++17 (std::optional)
+
+If your compiler does not support C++17 for C++11 and C++14 compatibility.
+
+## Direct Access vs. Get() functions
+
+ckw::Get() is an inline shortcut function and not required -- you can turn off the optional support and refer to the 
 value directly, such as:
 
 ```C++
@@ -126,17 +160,7 @@ which is the equivalent of the original line:
 auto bBorder = ckw::Get(keys.Border,false);  // Return keyword if used or false as default
 ```
 
-**_With this format, the interface is usually split into two components, where the keys are passed to the main function,
-and the packed-parameter list is parsed in the interface, since this part of the code must be in the .h-file interface vs.
-the source code (unless the call and function are in the same source body.)_**
-
-
-### Object-Based version
-
-With an object-based version, things are simpler as the interface does not require a template:
-
-
-
+Get() also has a form that will return a std::optional() when no defsault is given and C++17 support is turned on.
 
 
 
