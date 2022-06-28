@@ -21,11 +21,11 @@ CKwargs is a light, efficient class to enable using canonical keywords (aka name
 - [Direct Access vs. Get() functions](#direct-access-vs-get-functions)
  
 ## Other Items
-- [Function-Based Keywords (aka C++ named-parameter functions)](#installation-and-implementation)
-- [Packed-Parameters vs. Stream-Object Keyword formats]()
-  - [Packed-Parameters]()
-  - [Stream-Object Format]()
-- [Intallation and Implementation]()
+- [Function-Based Keywords (aka C++ named-parameter functions)](#function-based-keywords-aka-c-named-parameter-functions)
+- [Packed-Parameters vs. Stream-Object Keyword formats](#packed-parameters-vs-stream-object-keyword-formats)
+  - [Packed-Parameters](#packed-parameters)
+  - [Stream-Object Format](#stream-object-format)
+- [Intallation and Implementation](#installation-and-implementation)
 - [License](#license)
 - [Support](#support)
 
