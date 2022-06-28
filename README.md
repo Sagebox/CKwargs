@@ -50,8 +50,7 @@ See the section below, entitled [Function-Based Keywords (aka C++ named-paramete
   - [A Note About Cpmpiler Warnings](#a-note-about-compiler-warnings)
 - [C++ Version Support - C++11, C++14, and C++17](#c-version-support---c11-c14-and-c17)
 - [Intallation and Implementation](#installation-and-implementation)
-- [License](#license)
-  - [MIT License Statement Requirements](#mit-license-statement-requirements)
+- [MIT License](#mit-license)
 - [Support](#support)
 
 
@@ -251,11 +250,9 @@ The file `my_keywords.h` is an example file and is created by the program using 
 
 As many keywords sets as desired may be used with different namespace/classes as shown in my_keywords.h, allowing different modules to use different and unique keywords without overlap.
 
-# License
+# MIT License
 
 CKwargs is part of the Sagebox suite of open-source code.
-
-## MIT License Statement Requirements
 
 CKWargs is distributed under the MIT License, with the title and copyright notice as:
 
