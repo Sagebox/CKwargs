@@ -14,13 +14,13 @@
 
 #pragma once
 
-#include "keyclass.h"
+#include "ckwargs.h"
 class MyClass
 {
     // The main function we intend to call.  It is abstraced away from the keyword arguments, and
     // is given the resultant keyword information as input
     //
-    void SomeFunction(const char * sTitle,const keyclass::KeyValuesPtr & keys);
+    void SomeFunction(const char * sTitle,const ckwargs::KeyValuesPtr & keys);
 
 public:
 
@@ -35,7 +35,7 @@ public:
     template <class... Args>
     void SomeFunction(const char * sTitle, const Args&... kwArgs)
     {
-        SomeFunction(sTitle,keyclass::pkw::FillKeyValues(kwArgs...));
+        SomeFunction(sTitle,ckwargs::pkw::FillKeyValues(kwArgs...));
     }
 
 };

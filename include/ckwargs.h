@@ -1,9 +1,7 @@
 
 // CKwargs -- Sagebox C++ Named Parameter and Named Functions Class 
-//
 // Copyright (c) 2022 Rob Nelson, All Rights Reserved. Released under MIT License.  rob@sagebox.org
 // 
-//
 // -----------------------------------------------------------------------
 // CKwargs: C++ Named-Parameters (aka Keywords) and Named-Parameters Class
 // -----------------------------------------------------------------------
@@ -21,7 +19,7 @@
 // How to use CKwargs
 // ------------------
 //       
-//  1. keyclass.h must be set with your keyword names and keyword storage types.
+//  1. ckwargs.h must be set with your keyword names and keyword storage types.
 //  2. A namespace or class must be created with your keyword functions that
 //     pass the information to the ckw class when the keyword is invoked.
 //  
@@ -34,22 +32,22 @@
 // Classes and Namespaces Defined in CKwargs
 // -----------------------------------------
 // 
-// --> keyclass.h and keyclass.cpp are the only two files that are the CKwargs project.
+// --> ckwargs.h and ckwargs.cpp are the only two files that are the CKwargs project.
 //     a keyword class or namespace is defined by the program using CKwargs and is 
 //     represented by the example classes (in my_keywords.h) as 'kw' and 'kf'
 // 
 //     my_keywords.h is not technically part of CKwargs, and is used as an example of
 //     how to define keywords in various forms for CKwargs.
 // 
-//     ------------
-//     keyclass.cpp
-//     ------------
+//     -----------
+//     ckwargs.cpp
+//     -----------
 // 
 //          ckw      -- main keyword class.  This is the only class or namespace that is truly
 //                      defined in CKWargs.  Other namespaces and classes can be changed to suit the program
 //                      and to use CKwargs in multiple places in the same project.
 //          
-//          keyclass -- main working namespace.  This is where ckw lives, as well as some other functions.
+//          ckwargs  -- main working namespace.  This is where ckw lives, as well as some other functions.
 //                      This is designed to be personalized for the program, and can be changed in one place.
 //
 //      ----------------------------
@@ -184,44 +182,8 @@
 #endif
 // main Named Parameter namespace -- rename as appropriate
 
-namespace keyclass
+namespace ckwargs
 {
-
-// Macro examples for adding keyword code kw namespace:
-
-// Adding a value called "BorderSize" that accepts an int,
-// 
-// Canonical form:
-//
-//      struct {
-//           const ckw operator = (int iSize) { return ckw(Keywords::_x, [&](ckw & kwx) { kwx.keyValues.BorderSize = iSize;   }); } 
-//      }  BorderSize   ;
-// 
-// macro form1: 
-// 
-//      struct { _kw_op_eq(int iSize)            { _kw_return(BorderSize) { kwx.keyValues.BorderSize = iSize;   }); } }  BorderSize   ;
-// 
-// macro form2: 
-// 
-//      struct { _kw_op_eq(int iSize  )          { _kw_reteasy(BorderSize,iSize )   }  BorderSize;
-//
-// Adding a keyword with multiple types can be done simply by expressing a new overload in the structure
-// 
-// Example using form1: Range() which can accept a SIZE or a POINT can be done with -->
-//
-//    struct { _kw_op_eq(SIZE szRange  )      { _kw_return(Range) { kwx.keyValues.Range = szRange;              }); }
-//             _kw_op_eq(POINT pRange  )      { _kw_return(Range) { kwx.keyValues.Range = {pRange.x,pRange.y};  }); }
-//    } Range;
-//
-// Multiple Value keywords
-//
-// For multiple value types, use the function form, so with Range, for example, a min, max can be used.
-//
-// Rather than Range = {min,max}, use Range(min,max), which can also support multiple types, such as Range(Size), Range(Point), Range(min,max), etc.
-
-#define _kw_op_eq ckw operator = 
-#define _kw_return(_x) return ckw(Keywords::_x, [&](ckw & kwx)
-#define _kw_reteasy(_x,_value) { return ckw(Keywords::_x, [&](ckw & kwx) { kwx.keyValues._x       = _value;   }); }
 
 // Fill in the following with all the keywords raw types.
 // The Keyword types below are not the same as the exposed functions -- the functions declare
@@ -465,7 +427,7 @@ using  _kw_type4 = bool                 ;   // i.e. bool AddBorder
         // Original incoming ckw class is an empty object with no keyword.
         //
         template <class... Args>
-        static void __fillkeyvalues(ckw & ckwOrg,const ckw & kwx,Args&... args)
+        static void __fillkeyvalues(ckw & ckwOrg,const ckw & kwx,const Args&... args)
         {
             ckwOrg << kwx;      // Link the current argument/parameter to the previous one.
             __fillkeyvalues(ckwOrg,args...);
@@ -483,7 +445,7 @@ using  _kw_type4 = bool                 ;   // i.e. bool AddBorder
         // first thing the caller is going to do anyway.
         //
         template <class... Args>
-        static KeyValuesPtr FillKeyValues(Args&... args)
+        static KeyValuesPtr FillKeyValues(const Args&... args)
         {
             ckw kwx;                            // Get an empty object
             __fillkeyvalues(kwx,args...);       // Compile our ckw object
@@ -496,7 +458,7 @@ using  _kw_type4 = bool                 ;   // i.e. bool AddBorder
 
     }; // class pkw
 
-} // namespace keyclass
+} // namespace ckwargs
 
 #ifdef _MSC_VER 
 #pragma warning( pop )

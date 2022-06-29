@@ -5,12 +5,12 @@
 //
 // Copyright (c) 2022 Rob Nelson, All Rights Reserved. Released under MIT License.  rob@sagebox.org
 //
-// ---------------------------------
-// keyclass.cpp -- main CKwargs code
-// ---------------------------------
+// --------------------------------
+// ckwargs.cpp -- main CKwargs code
+// --------------------------------
 //
 // This code base is very small, cosisting of 20-25 lines, but is very extensible and can be used in many ways. 
-// Much of the formation of the class is the data structures and inlined functions in keyclass.h
+// Much of the formation of the class is the data structures and inlined functions in ckwargs.h
 // 
 // The basic idea behind the code is how it handles compiling the keywords, either through the packed-parameter
 // format or streamed format.  Either way, the process is the same
@@ -45,7 +45,7 @@
 // See my_keywords.h for code that is generated for the keywords (and is not part of the CKwargs class)
 //
 
-#include "keyclass.h"
+#include "ckwargs.h"
 
 #ifdef _MSC_VER 
 
@@ -60,7 +60,7 @@
 
 #endif
 
-namespace keyclass      // namespace name is arbitrary
+namespace ckwargs      // namespace name is arbitrary
 {
     // Constructor for packed-parameter start point to create and compile ckw keywords
     //
@@ -110,8 +110,8 @@ namespace keyclass      // namespace name is arbitrary
     // FillKeyValues() -- Go through compiled, ckw class linked list
     // and save pointer to values of used keywords (otherwise pointers are nullptr)
     //
-    // note: This is the ckw class version.  The keyclass version for packed parameters
-    //       (that then calls this version) is in keyclass.h
+    // note: This is the ckw class version.  The ckwargs version for packed parameters
+    //       (that then calls this version) is in ckwargs.h
     //
     const KeyValuesPtr ckw::FillKeyValues() const
     {
@@ -134,14 +134,14 @@ namespace keyclass      // namespace name is arbitrary
             if (keyClass)
                 switch(key) 
                 {
-                    _kw_CheckItems; // Check user-defined keywords as defined in keyclass.h
+                    _kw_CheckItems; // Check user-defined keywords as defined in ckwargs.h
                 }
             pckw = pckw->pNext;
         }
         return kValues;
     }
 
-} // namespace keyclass
+} // namespace ckwargs
 
 #ifdef _MSC_VER 
 #pragma warning( pop )

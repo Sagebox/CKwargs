@@ -1,7 +1,7 @@
 
 #include "SomeFunction.h"
 
-using namespace keyclass;
+using namespace ckwargs;
 
 // MainFunction function using keywords.
 // 

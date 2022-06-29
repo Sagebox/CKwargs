@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="keyclass.h">
+    <ClInclude Include="ckwargs.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="my_keywords.h">
@@ -23,7 +23,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="keyclass.cpp">
+    <ClCompile Include="ckwargs.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="main.cpp">

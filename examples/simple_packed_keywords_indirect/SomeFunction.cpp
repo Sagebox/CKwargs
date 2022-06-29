@@ -1,12 +1,12 @@
 
 #include "SomeFunction.h"
 
-using namespace keyclass;
+using namespace ckwargs;
 
 // MainFunction called indirectly with parameter packed version allowing canonical-like keywords (see test-packed.cpp)
 //
 
-void MyClass::SomeFunction(const char * sTitle, const keyclass::KeyValuesPtr & keys)
+void MyClass::SomeFunction(const char * sTitle, const KeyValuesPtr & keys)
 {
     printf("\nIncomingText: %s\n\n",sTitle);
 

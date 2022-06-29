@@ -19,11 +19,11 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="keyclass.h" />
+    <ClInclude Include="ckwargs.h" />
     <ClInclude Include="my_keywords.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="keyclass.cpp" />
+    <ClCompile Include="ckwargs.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
