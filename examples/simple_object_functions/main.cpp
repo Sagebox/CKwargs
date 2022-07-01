@@ -65,6 +65,6 @@ int main()
 
     // Make an Empty call to demonstrate using no keywords
 
-    SomeFunction("No Keywords (blanke)"); 
+    SomeFunction("No Keywords (blank)"); 
 
 }
