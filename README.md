@@ -46,7 +46,7 @@ See the section below, entitled [Function-Based Keywords (aka C++ named-paramete
 - [Canonical Assigned Keywords vs. Function-Based Keywords](#canonical-assigned-keywords-vs-function-based-keywords-aka-c-named-parameter-functions)
 - [Packed-Parameters vs. Object (Class-Based) Keyword functions](#packed-parameters-vs-object-class-based-keyword-functions))
   - [Packed-Parameters](#packed-parameters)
-  - [Object-Based Keywords](#object-based-keywords))
+  - [Object-Based Keywords](#object-based-keywords)
     - [The main advantages of an object-based approach](#the-main-advantages-of-an-object-based-approach)
 - [Requirements and Compiler Support](#requirements-and-compiler-support)
   - [A Note About Cpmpiler Warnings](#a-note-about-compiler-warnings)
@@ -152,6 +152,7 @@ void DrawBox(int x,int y,int size,const Args&... args)
 and the packed-parameter list is parsed in the interface, since this part of the code must be in the .h-file interface vs.
 the source code (unless the call and function are in the same source body.)_**
 
+_see : [Packed-Parameters](#packed-parameters) (below) for an example of a typical prototype that passes the keywords to the main function._
 
 ## Object-Based version Usage
 
