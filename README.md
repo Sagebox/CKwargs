@@ -17,13 +17,13 @@ Smaller programs can benefit from CKwargs, too -- the interface is very simple a
 auto& window = NewWindow("MyWindow");
 ```
 
-All the way to using any number of keywords to change the nature of the window
+All the way to using any number of keywords to change the nature of the window:
 
 ```C++
 auto& window - NewWindow("MyWindow", Size={1200,800}, bgColor="blue", Resizeable=true, Realtime=true, Font=25);
 ```
 
-or any combination in-between -- this keeps `NewWindow()` simple when you just want the defaults, or more complex when you don't.
+or any combination in-between -- this keeps `NewWindow()` simple when you just want the defaults, simultaneously allowing it to be more complex when you don't.
 
 
 ## Advantages of Keywords
