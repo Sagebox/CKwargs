@@ -53,7 +53,7 @@ See the section below, entitled [Function-Based Keywords (aka C++ named-paramete
 - [C++ 11 and C++ 14 Support](#c-11-and-c-14-support)
 - [Intallation and Implementation](#installation-and-implementation)
 - [MIT License](#mit-license)
-- [Support](#support)
+- [Support and Donations](#support-and-donations)
 
 
 ## Keywords are Necessary in Today's Projects
@@ -344,6 +344,14 @@ CKWargs is distributed under the MIT License, with the title and copyright notic
 `CKwargs -- Sagebox C++ Named Parameter Keywords and Functions`<br />
 `Copyright (c) 2022 Rob Nelson.  All Rights Reserved.`
 
-# Support
+# Support and Donations
 
--- To be completed --
+CKwargs is the first release (of many) of Sagebox source code. Sagebox is a free product based on donations.  Please consider donating to the project so that more and more can be released.
+
+All donations go to the development of Sagebox. 
+<br />
+<p align="center"><a href="https://www.projectsagebox.com/DonatePaypal.html">
+  <img src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" alt="Donate with PayPal" />
+</a>
+</p>
+<br />
