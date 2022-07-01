@@ -10,11 +10,11 @@ CKwargs is a light, efficient class to enable using canonical keywords (aka name
 ```C++
 DrawBox(x,y,size,Color="Red", Angle=75, Opacity=50, Skew={10,-10});
 ```
-CKwargs works with canonical keywords, such as `Angle=75` as shown above, but also supports function-based keywords:
+CKwargs works with canonical keywords, such as `Angle=75` as shown above, but also supports function-based keywords.
 
 ### Function-Based Keywords
 
-Function-based keywords are another way of expressing keywords, which can be more flexible and more powerful.  They can use more than one parameter, are easier to see with the intellisense, as well some other additives.
+Function-based keywords are another way of expressing keywords, which can be more flexible and more powerful.  They can use more than one parameter, are easier to see with the intellisense, as well as some other additives.
 
 
 
@@ -87,7 +87,7 @@ While the Box has its defaults, we may want to change a number of those, and add
   DrawBox(int x,int y,int size,const ckw & keywords)
   ```
   
-  depending on whether you use the Packed-Parameter or Streamed-Object format of CKwargs.
+  depending on whether you use the Packed-Parameter or Object format of CKwargs.
   
   
 ## Keywords to the Rescue
@@ -98,7 +98,7 @@ With CKwargs, we can do the following,
 DrawBox(x,y,size,Color="red", Angle=75, Opacity=50)
 ```
 
-choosing any keywords and placing them in any order, all without any of the keyword in the function prototype.
+choosing any keywords and placing them in any order, all without the keywords in the function prototype.
 
 ## A Note About Scoped Keywords vs. Unscoped Keywords
 
@@ -174,8 +174,7 @@ void DrawBox(int x,int y,int size,const & ckw kwx)
 
 ## Direct Access vs. Get() functions
 
-ckw::Get() is an inline shortcut function and not required -- you can turn off the optional support and refer to the 
-value directly, such as:
+`ckw::Get()` is an inline shortcut function and not required -- you can refer to the value directly, such as:
 
 ```C++
 auto bBorder = keys.Border ? *keys.Border : false;
@@ -187,7 +186,7 @@ which is the equivalent of the original line:
 auto bBorder = ckw::Get(keys.Border,false);  // Return keyword if used or false as default
 ```
 
-Get() also has a form that will return a std::optional() when no defsault is given and C++17 support is turned on.
+Get() also has a form that will return a std::optional() when no default is given and C++17 support is turned on.
 
 # Canonical Assigned Keywords vs. Function-Based Keywords (aka C++ named-parameter functions)
 
@@ -196,11 +195,11 @@ We are used to keywords being in the form of `keyword=assignment`, such as `AddB
 
 Function-Based keywords, such as `AddBorder()` or `AddBorder(true)` are the equivalent and can be more flexible and useful.
 
-## Sagebox
+## Sagebox Example
 
-With Sagebox, the canonical `keyword=assignment` format turned out to be limiting becuase Sagebox works to be self-evident and self=documenting, which can be an issue with assignment-based keywords.
+With Sagebox (where CKwargs comes from), the canonical `keyword=assignment` format turned out to be limiting becuase Sagebox works to be self-evident and self-documenting, which can be an issue with assignment-based keywords.
 
-It was also important with Sagebox to be able to use multiple parameters and multiple types to keep things easy and reedable.  For example, a keyword like `Range` can use multiple forms such as (int min,int max), or just (int min), but also a POINT, or even a std::array<int,2>
+It was also important with Sagebox to be able to use multiple parameters and multiple types to keep things easy and readable.  For example, a keyword like `Range` can use multiple forms such as `(int min,int max)`, or just `(int min)`, but also a `POINT`, or even a `std::array<int,2>`
 
 With keywords, we can assign them as `Range = MyPoint` or `Range = { 1, 10 }`.   But there are a few issues here that function-based keywords eliminate:
 
