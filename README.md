@@ -43,10 +43,11 @@ See the section below, entitled [Function-Based Keywords (aka C++ named-paramete
 - [Direct Access vs. Get() functions](#direct-access-vs-get-functions)
  
 ## Other Items
-- [Function-Based Keywords (aka C++ named-parameter functions)](#function-based-keywords-aka-c-named-parameter-functions)
-- [Packed-Parameters vs. Stream-Object Keyword formats](#packed-parameters-vs-stream-object-keyword-formats)
+- [Canonical Assigned Keywords vs. Function-Based Keywords](#canonical-assigned-keywords-vs-function-based-keywords-aka-c-named-parameter-functions)
+- [Packed-Parameters vs. Object (Class-Based) Keyword functions](#packed-parameters-vs-object-class-based-keyword-functions))
   - [Packed-Parameters](#packed-parameters)
-  - [Object-Based](#object-based)
+  - [Object-Based Keywords](#object-based-keywords))
+    - [The main advantages of an object-based approach](#the-main-advantages-of-an-object-based-approach)
 - [Requirements and Compiler Support](#requirements-and-compiler-support)
   - [A Note About Cpmpiler Warnings](#a-note-about-compiler-warnings)
 - [C++ 11 and C++ 14 Support](#c-11-and-c-14-support)
