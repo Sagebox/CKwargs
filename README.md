@@ -1,5 +1,5 @@
 # CKwargs
-C++ True Named-Parameter Keywords and Named-Parameter Functions
+C++ Named-Parameter Keywords and Named-Parameter Functions
 
 ### (In-Progress Version)
 
@@ -26,7 +26,7 @@ DrawBox(x,y,size,Color("Red") ,Angle(75), Opacity(50), Skew(10,-10));
 ```
 
 
-Even though the canonoical keyword form (i.e. `Range=123` vs. `Range(123)`) can be more compelling, this is the form used in [Sagebox C++ GUI tools](https://github.com/Sagebox/Sagebox). 
+Even though the canonical keyword form (i.e. `Range=123` vs. `Range(123)`) can be more compelling, this is the form used in [Sagebox C++ GUI tools](https://github.com/Sagebox/Sagebox), because it is more flexible and easier to work with for larger projects.
 
 See the section below, entitled [Function-Based Keywords (aka C++ named-parameter functions)](#function-based-keywords-aka-c-named-parameter-functions) for more information and examples.
 
@@ -46,7 +46,7 @@ See the section below, entitled [Function-Based Keywords (aka C++ named-paramete
 - [Function-Based Keywords (aka C++ named-parameter functions)](#function-based-keywords-aka-c-named-parameter-functions)
 - [Packed-Parameters vs. Stream-Object Keyword formats](#packed-parameters-vs-stream-object-keyword-formats)
   - [Packed-Parameters](#packed-parameters)
-  - [Stream-Object Format](#stream-object-format)
+  - [Object-Based](#object-based)
 - [Requirements and Compiler Support](#requirements-and-compiler-support)
   - [A Note About Cpmpiler Warnings](#a-note-about-compiler-warnings)
 - [C++ 11 and C++ 14 Support](#c-11-and-c-14-support)
@@ -133,7 +133,7 @@ From the function side of things, it is easy to use CKwargs.  There are two ways
 
 ### Packed-Parameter Usage (default usage)
 
-The packed-paremeter usage allows a true, canonical keyword style, and looks like this from the function's side, using DrawBox() as an example:
+The packed-parameter usage allows a true, canonical keyword style, and looks like this from the function's side, using DrawBox() as an example:
 
 ```C++
 template<class... Args>
@@ -189,21 +189,98 @@ auto bBorder = ckw::Get(keys.Border,false);  // Return keyword if used or false 
 
 Get() also has a form that will return a std::optional() when no defsault is given and C++17 support is turned on.
 
-# Function-Based Keywords (aka C++ named-parameter functions)
+# Canonical Assigned Keywords vs. Function-Based Keywords (aka C++ named-parameter functions)
 
--- To be completed --
 
-# Packed-Parameters vs. Stream-Object Keyword formats
+We are used to keywords being in the form of `keyword=assignment`, such as `AddBorder=true`. 
 
--- To be completed --
+Function-Based keywords, such as `AddBorder()` or `AddBorder(true)` are the equivalent and can be more flexible and useful.
 
-## Packed-Parameters
+## Sagebox
 
--- To be completed --
+With Sagebox, the canonical `keyword=assignment` format turned out to be limiting becuase Sagebox works to be self-evident and self=documenting, which can be an issue with assignment-based keywords.
 
-## Stream-Object Format
+It was also important with Sagebox to be able to use multiple parameters and multiple types to keep things easy and reedable.  For example, a keyword like `Range` can use multiple forms such as (int min,int max), or just (int min), but also a POINT, or even a std::array<int,2>
 
--- To be completed --
+With keywords, we can assign them as `Range = MyPoint` or `Range = { 1, 10 }`.   But there are a few issues here that function-based keywords eliminate:
+
+- Keeping it simpler.  In the above example, we can use Range(MyPoint), Range(1,10), Range(5)' very simply.  As keywords grow and use more parameters, this makes using keywords a little easier.
+- Doesn't require explicit true/false & can have default.  `AddBorder(true)` can become simply `AddBorder()` with a default set for true.  Any default may be used, which will tell the function the keyword is intended even if a value is not used.  With the assignment-based keywords (i.e. 'AddBorder=true') shortcut defaults can't be used.
+- Intellisense Documentation.   With the assignment format, i.e. `Range = { 1,10 }`, entering the base namespace `Range =` will list all keyword members of the space, but won't list the protoypes - it will, though show any source-level documentation above the Range prototype
+  - With function-based keywords, entering `Range(` will show all prototypes of the Range keyword, and once the intellisense understand what you are entering, it will
+also show documentation on different forms. 
+- Can get rid of the outer () in Object-Based Usage.  When using an object-based set of keywords (see [Packed-Parameters vs. Object (Class-Based) Keyword functions]() for more information), the other streaming overloads can be used other than the `,`, such as `AddBorder() << Range(1,10)`, removing the outer `()` required with the ',' usage (i.e. (AddBorder(), Range(1,10)).  
+  - '+' and '|' can also be used, such as `AddBorder() + Range(1,10)`
+    - I personally prefer the '|' format, so we go from 
+    
+    `MyFunction(123,(AddBorder(), Range(1,10)))` 
+    
+    to 
+    
+    `MyFunction(123,AddBorder() | Range(1,10))`
+  
+    While not the biggest deal, it can be nice to get rid of the outer `()` for clarity.
+
+
+
+# Packed-Parameters vs. Object (Class-Based) Keyword functions
+
+## Packed Parameters
+
+Packed-Paremeter usage allows more true-style keyword usage, such as `MyFunction(123,AddBorder=true,Range={1,10})` which looks great and is nice and clean. 
+
+It requires a function that is defined as a template, which will typically call the intended function after it resolves the keywords from the packed parameter.
+
+i.e. 
+
+```C++
+template<class... Args>
+void DrawBox(int x,int y,int size,const Args&... args)
+{
+   DrawBox(x,y,size,pkw::FillKeywords());
+}
+```
+
+All-in-all, pretty simple, though it does mean separating the code, and the above needs to be in the interface (i.e. the .h file) so the compiler
+can contruct the template as it compiled.
+
+Basically, while nice to use, the templatized format can become a little abstract compared to using an object-based keyword format.
+
+
+## Object-Based Keywords
+
+With an object, we can simply define the function as 
+
+```C++
+void DrawBox(int x,int y,int size,const ckwargs::ckw & kwx)
+{
+    // << main function here >>
+}
+```
+
+which is the function itself (i.e. the second function the packed-parameter-style called).
+
+The downside is that the keywords must have a `()` surrounding the keyword stream, such as 
+
+```C++
+DrawBox(x,y,size,( AddBorder=true, Range = {1,10} ));
+```
+
+or when using the function-based keyword format, one of the following forms that do not require the outer `()`:
+
+```C++
+DrawBox(x,y,size,AddBorder() << Range(1,10));
+DrawBox(x,y,size,AddBorder() + Range(1,10));
+DrawBox(x,y,size,AddBorder() | Range(1,10));
+```
+
+any of which is acceptable.
+
+### The main advantages of an object-based approach:
+
+- The function can be called directly.  This makes it easier to program for larger scale projects.  Since the function template does not need to be in the interface, the function does not need to split into two parts, making it easier to write.
+- Easier for intellisense.  Intellisense will always show the prototype, i.e. `void DrawBox(int x,int y,int size,const ckwargs::ckw & kwx)` where the intellisense will start showing the template format, which an be less clean in appearance.
+
 
 ## Requirements and Compiler Support
 
@@ -241,20 +318,17 @@ The file `my_keywords.h` is an example file and is created by the program using 
 
 ## Implementation
 
-- Copy `keyclass.cpp` and `keyclass.h` into your project directory
-- Edit `keyclass.h` to remove or change the example keywords (Range, AddBorder, etc.), placing your own keywords in the file
+- Copy `ckwargs.cpp`,`ckwargs.h`, and `my_keydefs.h` into your project directory
+- Edit `my_keydefs.h` to remove or change the example keywords (Range, AddBorder, etc.), placing your own keywords in the file
   - Also set the types for each keyword
-- use `my_keywords.h` to create your own keyword code to parse the keywords, using either the canonical keyword method (in the kw namespace) or the function-based keyword format (in the kf namespace)
-  - only one namespace is typically used, depending on the style you choose, although both styles can be used simultaneously
-  - namespaces can also be classes or structs.  As a namespace, you can unscope the keywords for cleaner usage (i.e. AddBorder=true vs. kw::AddBorder=true)
-    - This is the only advantage to using a namespace vs. a class or struct.
-    - Note that the examples have static in front of the functions.  This will cause duplicated code when multiple source files bring in the `my_keywords.h` file.
-      - Move the code to a separate C++ file to avoid duplicate code
-      - The code itself is small, so it is not required when mulitple files use `my_keywords.h`, and it can be easier to let the duplicated code exist during the design phase and/or until a refactoring step to avoid extra work until the design is solidified.
-  - the namespace are arbitrary names and can be named anything you liked, and can also be put into any scope you wish, such as within a class (as classes or structs vs. namespaces)
-
-As many keywords sets as desired may be used with different namespace/classes as shown in my_keywords.h, allowing different modules to use different and unique keywords without overlap.
-
+  - `my_keydefs.h` contains 4 sample keywords.  See comments within on how to personalize it for your project.
+- Creating Keywords in Code
+  - For canonical keyword style (i.e. `AddBorder=true`): copy and edit `my_keywords.h` and `my_keywords.cpp` into the project.
+  - For function-based keywords (i.e. `AddBorder()` or `AddBorder(true)`): copy and edit `my_keyfuncs.h` and `my_keyfunc.cpp`
+  - Change the sample keyword namespaces (either `kw` or `kf`) to whatever desired (or just keep them the same name, `kw` is recommended)
+    - These are declared as namespaces in the .h file, but can be a class or a struct 
+    - The namespace is used to show in the examples unscoped keyword usage.  That's about the only advantage to using a namespace vs. a class or struct.
+ 
 # MIT License
 
 CKwargs is part of the Sagebox suite of open-source code.
