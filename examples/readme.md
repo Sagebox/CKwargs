@@ -25,9 +25,9 @@ or
 MyFunction(parm1,parm2,keyword()) for keywords that have default parameters (useful with booleans)
 ```
 
-### Object-Streamed Parameters
+### Object-Based Parameters
 
-A second form uses a single object that contains a linked-list back to all keywords, and is formed as a stream.
+A second form uses a single object that contains a linked-list back to all keywords, and is formed as an object stream.
 
 This type of keyword has some advantages including better intellisense lookup, no template code and more &ndash; see comments at bottom of text.
 
@@ -57,7 +57,7 @@ any of which work fine.
 
 # Packed-Parameter Examples
 
-files: **_simple_packed_functions_indirect.cpp_, _simple_packed_keywords_indirect.cpp_**
+files: `simple_packed_functions.cpp` and `simple_packed_keywords.cpp`
 
 These two examples show using canonical style keywords using a packed-parameter format.   
 These have the advantage of using true keyword style keywords, and use a packed-parameter template.
@@ -76,22 +76,10 @@ or
 ```C++
 MyFunction(parm1,parm2,AddBorder(),Range(1,10),ExtraText("Hello World"));
 ```
-	
 
-### Direct Calls to Packed-Parameter Functions
+# Object-Based Examples
 
-files: **_simple_packed_functions.cpp_, _simple_packed_keywords.cpp_**
-
-These two examples are mainly for reference, showing a direct call to the function, which is declared as a 
-packed-parameter function.  
-
-Either way can be used, and a direct call must have the code in the interface so that the compiler can
-create template-based code. 
-
-
-# Streamed Object Examples
-
-files: **_simple_streamed_functions.cpp_, _simple_streamed_keywords.cpp_**
+files: `simple_streamed_functions.cpp` and `simple_streamed_keywords.cpp`
 
 These examples show using a streamed-object format, which is exactly the same as the packed-parameter format 
 except that the keyword part of the function call must be enclosed in "()", or in the case of function-based
