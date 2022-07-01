@@ -5,6 +5,42 @@ C++ Named-Parameter Keywords and Named-Parameter Functions
 
 CKwargs is a light, efficient class to enable using canonical keywords (aka named-parameters) in C++, such as with this example:
 
+Ckwargs is great for medium-to-large-scale projects that have a number of functions that would benefit from keywords. Keywords can keep the function prototype very simple, and CKwargs is extremely memory- and time-efficient, allowing call to real-time functions.
+
+Smaller programs can benefit from CKwargs, too -- the interface is very simple and easy to implement.
+
+### Example
+
+`NewWindow()` below can be called with just the title parameter, such as:
+
+```C++
+auto& window = NewWindow("MyWindow");
+```
+
+All the way to using any number of keywords to change the nature of the window
+
+```C++
+auto& window - NewWindow("MyWindow", Size={1200,800}, bgColor="blue", Resizeable=true, Realtime=true, Font=25);
+```
+
+or any combination in-between -- this keeps `NewWindow()` simple when you just want the defaults, or more complex when you don't.
+
+
+## Advantages of Keywords
+
+One of the biggest advantages of keywords is that it is a great way to give a function information before it creates an object, and gives a way to avoid creating objects in the first place.  Keywords can also contain lambda functions to allow a function to fill in information from the function or constructor itself.
+
+Another advantage is that keywords makes a function scalable, keeping a simple protoype, but also allowing the calling function to reshape, redefine, and allow the function to perform complex tasks -- all without knowing the internals of the function, only what it needs from the keywords in the public interface. 
+
+## Origins of CKwargs
+
+CKwargs is the first open-source release (of many) of Sagebox source code.  CKwargs was written to give keyword-based options to many Sagebox GUI and other functions in order to keep functions simple and powerful at the same time, depending on usage and needs. 
+
+Without keywords, Sagebox would have had to create objects to modify or lambda callbacks that required knowledge of the internal format to make changes. 
+
+With keywords, a function can be pased a large amount of informaiton in a way that keeps the overall function simple when you don't need much from it, or not so simle when you want to add multiple keywords to perform personalize and powerful additives.
+
+
 ## Canonical Keywords (keyword=value)
 
 ```C++
