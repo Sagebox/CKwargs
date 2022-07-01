@@ -13,7 +13,7 @@
 // of about 40 lines of actual code, in addition to the keyword code written specifically for the
 // program using it (which is typically one or two lines of code per keyword)
 // 
-// See the ?? documentation for more information.
+// See the Readme.md file at github.com/Sagebox/ckwargs for more information.
 // 
 // ------------------
 // How to use CKwargs
@@ -26,7 +26,7 @@
 //     see my_keyword.h as an example -- your file is meant to replace my_keyword.h, and 
 //     my_keyword.h is not referred to by CKwargs and is private to the program that uses CKwargs
 // 
-//  See the ?? documentation on using CKwargs for your program.
+// See the Readme.md file at github.com/Sagebox/ckwargs for more information.
 // 
 // -----------------------------------------
 // Classes and Namespaces Defined in CKwargs
@@ -50,16 +50,16 @@
 //          ckwargs  -- main working namespace.  This is where ckw lives, as well as some other functions.
 //                      This is designed to be personalized for the program, and can be changed in one place.
 //
-//      ----------------------------
-//      my_keywords.h (example file)
-//      ----------------------------
+//      -------------------------------------------
+//      my_keywords.h or my_keyfuncs.h (example file)
+//      -------------------------------------------
 //                          
-//          kw       -- Main keywords example.  This creates keyword-style named parameters, such as 
+//          kw       -- (my_keywords.h) Main keywords example.  This creates keyword-style named parameters, such as 
 //                      AddBorder=True, Range= {1,10}, BorderSize = 25, etc.
 // 
 //                      This is defined as a namespace in my_keywords.h, but can also be a class. 
 //                      
-//          kf      -- Main keyword functions example.  This created keyword-style named-parameter functions, such as
+//          kf      -- (my_keyfuncs.h) Main keyword functions example.  This created keyword-style named-parameter functions, such as
 //                     AddBorder(), AddBorder(true), Range(1,10), BorderSize(25), etc.
 // 
 //                      This is defined as a namespace in my_keywords.h, but can also be a class.
@@ -67,11 +67,38 @@
 //          Note: kw and kf are defined as example -- in a typical usage, only one would exist, as they reflect
 //                the choice between using keywords or keyword functions.
 // 
+// -------------------------------------
+// About my_keywords.h and my_keyfuncs.h
+// -------------------------------------
+// 
+// 1. Only one file is needed to use ckwargs.  Each file shows a different method (keywords vs keyword-functions),which
+//    generally aren't used simultaneously.  
+// 2. Choose the form you want and use that file as a template.
+// 3. This is the file the client-application includes -- rename this file to something that fits your project.
+//
+// ----------------------
+// About ckwargs namespace
+// ----------------------
+// 
+// This is the base namespace for ckwargs.  For multiple function sets or modules that
+// use ckwargs, these files can be copied, with and the ckwargs namespace can be changed to a 
+// namespace reflective of the project -- just search and replace 'ckwargs' with
+// a new namespace name in the copied files.
+// 
+// The client program uses only the keyword namespace defined in my_keywords.h/my_keyfuncs.h (depending on keyword form used). 
+//  
+// For each different keyword block for differnet function sets, a unique namespace is required.
+// 
+// Ckwargs code is about 50 lines in total, so adding function sets doesn't increase program size by more
+// than a couple k (if that) for each instance.
+
+
+// 
 // ---------------
 // CKwargs Example 
 // ---------------
 //
-//      Say we have a function called DrawBox(int x,int y,int Radius), and we have a lot of potential options
+//      let's Say we have a function called DrawBox(int x,int y,int Radius), and we have a lot of potential options
 //      but don't want to clutter the function prototype.
 // 
 //      Some optional keywords we might use for DrawBox() are:
@@ -126,13 +153,14 @@
 // functions that can be added to a function call, whereas the main advantage of the streamed object type is that it allows for no public
 // interface code, and does not require the use of templates. 
 // 
-// See ?? documentation for more details
+// See the Readme.md file at github.com/Sagebox/ckwargs for more information.
 // 
 // -------------------------------------------------------------------------------
 // namespaces vs classes in the main keyword definition scope (i.e. my_keywords.h)
 // -------------------------------------------------------------------------------
 // 
-// See the ?? documentation on using namespace vs. classes for the keyword class/namespace as shown in the example file my_keywords.h
+// See the Readme.md file at github.com/Sagebox/ckwargs on using namespace vs. classes for 
+// the keyword class/namespace as shown in the example file my_keywords.h
 // 
 // The main difference is that with a namespace, the keywords can be brought into a local focus so that a class or namespace prefix
 // is not needed.
@@ -180,109 +208,13 @@
 #pragma strict_gs_check(off)
 
 #endif
-// main Named Parameter namespace -- rename as appropriate
+
+#include "my_keydefs.h"        // Include keyword definitions for ckwargs namespace
+
+// Main Named Parameter namespace -- rename as appropriate
 
 namespace ckwargs
 {
-
-// Fill in the following with all the keywords raw types.
-// The Keyword types below are not the same as the exposed functions -- the functions declare
-// which keyword types to use below, which allows for overloaded functions with the same name to use 
-// different keyword types, and therefore different return and fill types. 
-//
-// Areas to fill with each keyword type:
-//
-//  enum class Keywords         -- enum types for keyword functions to specify
-//  KeyValues                   -- Structure filled for keyword functions to fill 
-//                                 This is only for those keywords that do not process their own pointers
-//                                 For example, a const char * pointer just passes the pointer and not the string, so
-//                                 there is no need to store it.
-// KeyValuesPtr                 -- Return pointers (or std::optional) for ALL keywords (only the Keywords struct omits direct pointers)
-//                              -- These are set to nullptr (or nullopt) if the keyword wasn't found, otherwise they point safely to the 
-//                                 data for the keyword
-//
-// _kw_CheckItems               -- #define macros to use a switch() on every type.  This can be moved to the C++ code, but is here to
-//                                 keep everything in one place.
-
-// --------------------------------------------------------------------------
-// Example keyword definitions. 4 Sections - (replace keywords with your own)
-// --------------------------------------------------------------------------
-    
-// Macros and typedef's to make adding keywords easier. 
-// Each section only needs the addition of the next key and type as they are added
-
-#define _kw_key1 Range                  // Example Range keyword or function, i.e. Range = {5,10} or Range(5,10)
-#define _kw_key2 Text                   // i.e. Text = "Hello World" or Text("Hello World")
-#define _kw_key3 BorderSize             // i.e. BorderSize = 10, or BorderSize(10)
-#define _kw_key4 AddBorder              // i.e. AddBorder = true, AddBorder = false, or AddBorder() or AddBorder(true) or AddBorder(false)
-
-using  _kw_type1 = std::array<int,2>    ;   // i.e. std::array<int,2> Range, etc.
-using  _kw_type2 = const char *         ;   // i.e. const char * Text
-using  _kw_type3 = int                  ;   // i.e. int BoderSize
-using  _kw_type4 = bool                 ;   // i.e. bool AddBorder
-
-    // --> For the 4 sections below, add key and type value enumrations to reflect number of keys defined above.
-
-    // Defined Keywords -- these are internal and not exposed to the user, and do not need to directly
-    //                     reflect the exposed interface. 
-    //
-    // These are example keywords.  Fill in with keywords for your named parameters and/or functions
-    //
-    enum class Keywords
-    {
-        _kw_key1,
-        _kw_key2,
-        _kw_key3,
-        _kw_key4,
-    };
-
-    #define _kw_CheckItems  CheckItem(_kw_key1    );    \
-                            CheckItem(_kw_key2    );    \
-                            CheckItem(_kw_key3    );    \
-                            CheckItem(_kw_key4    );    \
-    
-    // -----------------
-    // Key Value storage
-    // -----------------
-    //  
-    // Programatically, anything that is not a pointer does not explicitly need to be stored and can point
-    // to the original source -- this will need to change elsewhere in the code, though (i.e. as an updated version) 
-    //
-    // For now, all values are placed here.  As a union, pointers should be used for classes and STL items
-    // that are classes (i.e. std::pair, for example).  Use a 'struct' instead a union for more flexibility, but less
-    // control over hidden code (repeated instantiations, copies, etc.) caused by initializing class/STL objects.
-    //
-    // Fill in the types and values for Keywords
-    //
-    union KeyValues     // Optionally a struct for more flexibility (and headaches)
-    {
-        _kw_type1         _kw_key1 ;
-        _kw_type2         _kw_key2 ;    
-        _kw_type3         _kw_key3 ;
-        _kw_type4         _kw_key4 ;
-   };
-
-    // ------------
-    // KeyValuesPtr
-    // ------------
-    // 
-    // Used when calling KillKeyValues() and not part of the keyword class (i.e. it's put on the stack of the function using
-    // the keywords)
-    //  
-    // This is the exact format as KeyValues, but as pointers.  
-    //
-    // Note: Optionals can be used here, but would copy the data, which would instantiate objects, require copy-constructors for some, etc.
-    //       Pointers are used instead so copies to not need to be made.
-    //
-    // See the Get() functions for shortcuts on retrieving values.
-    //
-    struct KeyValuesPtr
-    {
-        _kw_type1  * _kw_key1 ;
-        _kw_type2  * _kw_key2 ;
-        _kw_type3  * _kw_key3 ;
-        _kw_type4  * _kw_key4 ;
-    };
 
     // -------------------------------
     // ckw class -- main keyword class 

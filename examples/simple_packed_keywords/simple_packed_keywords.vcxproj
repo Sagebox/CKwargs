@@ -20,16 +20,20 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ckwargs.h" />
+    <ClInclude Include="my_keydefs.h" />
     <ClInclude Include="my_keywords.h" />
+    <ClInclude Include="SomeFunction.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ckwargs.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="my_keywords.cpp" />
+    <ClCompile Include="SomeFunction.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{447ca445-722a-4b10-8c28-c37d8d06fb7f}</ProjectGuid>
+    <ProjectGuid>{7a203c2a-bcfc-4999-9fbb-93707323f37d}</ProjectGuid>
     <RootNamespace>simple_packed_keywords</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>

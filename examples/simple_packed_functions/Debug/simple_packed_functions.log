@@ -1,0 +1,6 @@
+﻿  ckwargs.cpp
+  main.cpp
+  my_keyfuncs.cpp
+  SomeFunction.cpp
+  Generating Code...
+  simple_packed_functions.vcxproj -> C:\sandboxes\CKwargs\examples\simple_packed_functions\Debug\simple_packed_functions.exe

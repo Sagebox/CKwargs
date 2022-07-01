@@ -20,17 +20,21 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ckwargs.h" />
-    <ClInclude Include="my_keywords.h" />
+    <ClInclude Include="my_keydefs.h" />
+    <ClInclude Include="my_keyfuncs.h" />
+    <ClInclude Include="SomeFunction.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ckwargs.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="my_keyfuncs.cpp" />
+    <ClCompile Include="SomeFunction.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{dd7d2773-505d-4989-81c0-faaf08e78a2d}</ProjectGuid>
-    <RootNamespace>simplepackedfunctions</RootNamespace>
+    <ProjectGuid>{3c149703-14c1-4b78-9264-fd2480b2025a}</ProjectGuid>
+    <RootNamespace>simple_packed_functions</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />

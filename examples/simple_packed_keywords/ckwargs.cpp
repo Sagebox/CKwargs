@@ -45,6 +45,8 @@
 // See my_keywords.h for code that is generated for the keywords (and is not part of the CKwargs class)
 //
 
+#define _ckwargs_inc_check_items        // Expose CheckItems macro for just this file
+
 #include "ckwargs.h"
 
 #ifdef _MSC_VER 
@@ -134,7 +136,7 @@ namespace ckwargs      // namespace name is arbitrary
             if (keyClass)
                 switch(key) 
                 {
-                    _kw_CheckItems; // Check user-defined keywords as defined in ckwargs.h
+                    _ckwargs_CheckItems; // Check user-defined keywords as defined in ckwargs.h
                 }
             pckw = pckw->pNext;
         }
