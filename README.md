@@ -213,13 +213,13 @@ also show documentation on different forms.
     - I personally prefer the `'|'` format, so we go from 
     
     ```C++
-    MyFunction(123,(AddBorder(), Range(1,10)))` 
+    MyFunction(123,(AddBorder(), Range(1,10)))
     ```
     
     to 
     
     ```C++
-    MyFunction(123,AddBorder() | Range(1,10))`
+    MyFunction(123,AddBorder() | Range(1,10))
     ```
   
     While not the biggest deal, it can be nice to get rid of the outer `()` for clarity.
@@ -230,7 +230,7 @@ also show documentation on different forms.
 
 ## Packed Parameters
 
-Packed-Paremeter usage allows more true-style keyword usage, such as `MyFunction(123,AddBorder=true,Range={1,10})` which looks great and is nice and clean. 
+Packed-Parameter usage allows more true-style keyword usage, such as `MyFunction(123,AddBorder=true,Range={1,10})` which looks great and is nice and clean. 
 
 It requires a function that is defined as a template, which will typically call the intended function after it resolves the keywords from the packed parameter.
 
@@ -277,12 +277,12 @@ DrawBox(x,y,size,AddBorder() + Range(1,10));
 DrawBox(x,y,size,AddBorder() | Range(1,10));
 ```
 
-any of which is acceptable.
+any of which are acceptable.
 
 ### The main advantages of an object-based approach:
 
 - The function can be called directly.  This makes it easier to program for larger scale projects.  Since the function template does not need to be in the interface, the function does not need to split into two parts, making it easier to write.
-- Easier for intellisense.  Intellisense will always show the prototype, i.e. `void DrawBox(int x,int y,int size,const ckwargs::ckw & kwx)` where the intellisense will start showing the template format, which an be less clean in appearance.
+- Easier for intellisense.  Intellisense will always show the prototype, i.e. `void DrawBox(int x,int y,int size,const ckwargs::ckw & kwx)` where the intellisense will start showing the template format, which can be less clean and more abstract in appearance.
 
 
 ## Requirements and Compiler Support
@@ -315,9 +315,7 @@ If your compiler does not support C++17, you can turn off `keyword_cpp17_support
 
 # Installation and Implementation
 
-Installation is just the two files: `keyclass.cpp` and `keyclass.h`
-
-The file `my_keywords.h` is an example file and is created by the program using CKwargs.
+Installation is simple, with just copying a few files into your project and editing them for your keyword definitions and code.
 
 ## Implementation
 
@@ -327,10 +325,13 @@ The file `my_keywords.h` is an example file and is created by the program using 
   - `my_keydefs.h` contains 4 sample keywords.  See comments within on how to personalize it for your project.
 - Creating Keywords in Code
   - For canonical keyword style (i.e. `AddBorder=true`): copy and edit `my_keywords.h` and `my_keywords.cpp` into the project.
-  - For function-based keywords (i.e. `AddBorder()` or `AddBorder(true)`): copy and edit `my_keyfuncs.h` and `my_keyfunc.cpp`
+  - For function-based keywords (i.e. `AddBorder()` or `AddBorder(true)`): copy and edit `my_keyfuncs.h` and `my_keyfuncs.cpp`
   - Change the sample keyword namespaces (either `kw` or `kf`) to whatever desired (or just keep them the same name, `kw` is recommended)
     - These are declared as namespaces in the .h file, but can be a class or a struct 
     - The namespace is used to show in the examples unscoped keyword usage.  That's about the only advantage to using a namespace vs. a class or struct.
+- Rename the include keyword code files (`my_keywords.h` &`mykeyword.cpp` or `my_keyfuncs.h` & `my_keyfuncs.cpp` -- whichever you copied) to the name of our keyword base name, such as `mykeys.h` and `mykeys.cpp`
+  - the `mykeys.h` file is the only file that is included by the client program.
+  - In the sagebox project, for example, the main keyword .h file is called `sageopt.h` to reflect the idea of _Sagebox Options_
  
 # MIT License
 
