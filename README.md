@@ -199,24 +199,28 @@ Function-Based keywords, such as `AddBorder()` or `AddBorder(true)` are the equi
 
 With Sagebox (where CKwargs comes from), the canonical `keyword=assignment` format turned out to be limiting becuase Sagebox works to be self-evident and self-documenting, which can be an issue with assignment-based keywords.
 
-It was also important with Sagebox to be able to use multiple parameters and multiple types to keep things easy and readable.  For example, a keyword like `Range` can use multiple forms such as `(int min,int max)`, or just `(int min)`, but also a `POINT`, or even a `std::array<int,2>`
+It was also important with Sagebox to be able to use multiple parameters and multiple types to keep things easy and readable.  For example, a keyword like `Range` can use multiple forms such as `(int min,int max)`, or just `(int min)`, but also a `POINT`, or even a `std::array<int,2>`.
 
-With keywords, we can assign them as `Range = MyPoint` or `Range = { 1, 10 }`.   But there are a few issues here that function-based keywords eliminate:
+With keywords, we can assign them as `Range = MyPoint` or `Range = { 1, 10 }` when using different types.   But there are a few issues that function-based keywords eliminate:
 
-- Keeping it simpler.  In the above example, we can use Range(MyPoint), Range(1,10), Range(5)' very simply.  As keywords grow and use more parameters, this makes using keywords a little easier.
+- Keeping it simpler.  In the above example, we can use `Range(MyPoint)`, `Range(1,10)`, and `Range(5)` very simply.  As keywords grow and use more parameters, this makes using keywords a little easier.
 - Doesn't require explicit true/false & can have default.  `AddBorder(true)` can become simply `AddBorder()` with a default set for true.  Any default may be used, which will tell the function the keyword is intended even if a value is not used.  With the assignment-based keywords (i.e. 'AddBorder=true') shortcut defaults can't be used.
-- Intellisense Documentation.   With the assignment format, i.e. `Range = { 1,10 }`, entering the base namespace `Range =` will list all keyword members of the space, but won't list the protoypes - it will, though show any source-level documentation above the Range prototype
-  - With function-based keywords, entering `Range(` will show all prototypes of the Range keyword, and once the intellisense understand what you are entering, it will
+- Intellisense Documentation.   With the assignment format, i.e. `Range = { 1,10 }`, entering the base namespace `Range =` will list all keyword members of the space, but won't list the protoypes - it will, though, show any source-level documentation above the Range prototype
+  - With function-based keywords, entering `Range(` will show all prototypes of the `Range` keyword, and once the intellisense understands that you are entering, it will
 also show documentation on different forms. 
-- Can get rid of the outer () in Object-Based Usage.  When using an object-based set of keywords (see [Packed-Parameters vs. Object (Class-Based) Keyword functions]() for more information), the other streaming overloads can be used other than the `,`, such as `AddBorder() << Range(1,10)`, removing the outer `()` required with the ',' usage (i.e. (AddBorder(), Range(1,10)).  
-  - '+' and '|' can also be used, such as `AddBorder() + Range(1,10)`
-    - I personally prefer the '|' format, so we go from 
+- Can get rid of the outer () in Object-Based Usage.  When using an object-based set of keywords (see [Packed-Parameters vs. Object (Class-Based) Keyword functions]() for more information), other streaming overloads can be used other than the `,`, such as `AddBorder() << Range(1,10)`, removing the outer `()` required with the ',' usage (i.e. `(AddBorder(), Range(1,10))`).  
+  - `'+'` and `'|'` can also be used, such as `AddBorder() + Range(1,10)`
+    - I personally prefer the `'|'` format, so we go from 
     
-    `MyFunction(123,(AddBorder(), Range(1,10)))` 
+    ```C++
+    MyFunction(123,(AddBorder(), Range(1,10)))` 
+    ```
     
     to 
     
-    `MyFunction(123,AddBorder() | Range(1,10))`
+    ```C++
+    MyFunction(123,AddBorder() | Range(1,10))`
+    ```
   
     While not the biggest deal, it can be nice to get rid of the outer `()` for clarity.
 
