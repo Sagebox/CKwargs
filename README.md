@@ -25,6 +25,20 @@ auto& window - NewWindow("MyWindow", Size={1200,800}, bgColor="blue", Resizeable
 
 or any combination in-between -- this keeps `NewWindow()` simple when you just want the defaults, simultaneously allowing it to be more complex when you don't.
 
+## Features
+
+CKwargs has a number of features that make it useful. 
+
+- `Real Keyword Usage.`  Functions such as `MyFunction(parm1,parm2,keyword1=value,keyword=value2)` can be used.  Functions can use only keywords (without traditional parameters), and can also be called without any keywords.   Keywords can be contained in namespaces, classes or structs.   In the case of namespaces, "using namespace <keyword namespace> within a function or file can allow keyword usage as shown above, without scoping the keywords.
+- `Symbolic Keywords.`  Uses compile-time symbolic values rather than strings. This allows the compiler to spot any errors easily.
+- `Intellisense Help.` Because keywords are symbolic, keywords can be listed by entering the keyword namespace, such as "kw::", which will bring up all available keywords with documentation about the keyword, how to use it, and forms it can take.
+- `Useful for mid-size, large-size project.`  Since the keywords don't form a template tied to every call, it's easier to form a generic set of symbolic keywords for a project.
+- `Multiple Types per-keyword.`  Keywords can be assigned multiple types. 
+- `Small Code, Fast Execution.`  The code for the keywords is about 40 lines of small, discrete code (it just really links together objects on the stack).
+- `Usable in Real-Time environment.`   Memory and processing is very low, so keywords don't take much memory or execution speed.  
+- `Template-Free Mode.`   One mode uses paramater packs, while another mode uses an object-base that makes programming and using keywords easier (because we all know how C++ treats syntax errors and such with STL and templates).
+- `Optional Keyword Functions.`  Keyword functions can be used instead of regular keywords (i.e.  `MyKeyword(value)` or `MyKeyword(value1,value2)` or just `MyKeword()` (in the case of a boolean true/false keyword), making using multiple keyword values easier. 
+  - Example `MyFunction(parm1,parm2,Keyword1(), Keyword2(123), Keyword3("Hello"));`
 
 ## Advantages of Keywords
 
