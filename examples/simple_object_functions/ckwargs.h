@@ -186,6 +186,7 @@
 #include <optional>
 #endif
 
+
 // -----------------------------------------------------------
 // Personalized Includes Needed for Keyword Data Storage Types
 // -----------------------------------------------------------
@@ -193,7 +194,7 @@
 // Types required for the _kw_types below
 
 #include <array>        // Included for the "Range" keyword example.  Otherwise not needed.
-
+#include <cstring>
 
 #ifdef _MSC_VER 
 
@@ -206,7 +207,12 @@
 
 #pragma warning( push )
 #pragma strict_gs_check(off)
-
+#else
+    // forceinline for gcc 
+    //
+    #ifndef __forceinline 
+    #define __forceinline __attribute__((always_inline))
+#endif
 #endif
 
 #include "my_keydefs.h"        // Include keyword definitions for ckwargs namespace

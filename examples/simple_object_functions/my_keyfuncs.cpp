@@ -1,4 +1,3 @@
-#pragma once
 
 #define _ckwargs_inc_check_items
 #include "my_keyfuncs.h"

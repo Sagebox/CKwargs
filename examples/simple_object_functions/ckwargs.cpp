@@ -48,6 +48,7 @@
 #define _ckwargs_inc_check_items        // Expose CheckItems macro for just this file
 
 #include "ckwargs.h"
+#include <cstring>
 
 #ifdef _MSC_VER 
 
